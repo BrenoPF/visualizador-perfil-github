@@ -9,3 +9,7 @@ Uma aplicação web minimalista (Frontend puro) que consome a API oficial do Git
 - **JavaScript (Vanilla)**: Construído com forte apelo em performance usando a Arquitetura de Módulos (ES6) nativa. Integra também consumos seguros da API utilizando Fetch/Async.
 
 
+
+
+https://github.com/user-attachments/assets/e9a00350-bd57-4cf2-869d-bae5311893af
+
