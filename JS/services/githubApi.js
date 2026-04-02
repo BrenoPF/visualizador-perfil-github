@@ -8,8 +8,8 @@ export async function fetchGithubUser(userName) {
   return await response.json();
 }
 
-export async function fetchGithubUserRepos(userName) {
-    const response = await fetch(`${BASE_URL}/users/${userName}/repos?per_page=10&sort=created`);
+export async function fetchGithubUserRepos(userName, limit = 10) {
+    const response = await fetch(`${BASE_URL}/users/${userName}/repos?per_page=${limit}&sort=created`);
     if (!response.ok) {
         throw new Error('Repositórios não encontrados.');
     }

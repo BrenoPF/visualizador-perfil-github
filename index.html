@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizador de Perfil do GitHub</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="src/css/reset.css">
     <link rel="stylesheet" href="src/css/styles.css">
     <link rel="stylesheet" href="src/css/animations.css">
@@ -21,13 +25,18 @@
         <section class="container">
             <header>
                 <h2>Buscar Usuário</h2>
+                <label for="input-search" class="sr-only">Nome de usuário do GitHub</label>
                 <p class="search-hint">Digite o nome de usuário do GitHub e tenha acesso aos dados do perfil</p>
-                <input type="text" id="input-search" placeholder="Digite o nome do usuário no GitHub">
+                <input type="text" id="input-search" placeholder="Digite o nome do usuário no GitHub" aria-label="Digite o nome do usuário no GitHub">
                 
-                <input type="button" value="Buscar" id="btn-search">
+                <button type="button" id="btn-search" aria-label="Buscar usuário">Buscar</button>
             </header>
 
-            <div class="profile-results"></div>
+            <div class="profile-results">
+                <div class="empty-state">
+                    <p>Faça sua primeira busca para exibir os dados do perfil aqui.</p>
+                </div>
+            </div>
         </section>
     </main>
     <script type="module" src="JS/index.js"></script>

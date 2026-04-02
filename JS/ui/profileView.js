@@ -1,7 +1,7 @@
 export function renderProfile(userData, userRepos, container) {
 
   const repositoriesHTML = userRepos && userRepos.length > 0 ? userRepos.map(repo => `
-    <a href="${repo.html_url}" target="_blank">
+    <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
         <div class="repository-card">    
             <h3>${repo.name}</h3>
             <div class="repository-stats">
@@ -14,14 +14,23 @@ export function renderProfile(userData, userRepos, container) {
     </a>
     `).join('') : `<p>Nenhum repositório encontrado.</p>`;
 
+  const extraInfo = `
+    <div class="profile-extra">
+        ${userData.location ? `<span>📍 ${userData.location}</span>` : ''}
+        ${userData.company ? `<span>🏢 ${userData.company}</span>` : ''}
+        ${userData.twitter_username ? `<span>🐦 <a href="https://twitter.com/${userData.twitter_username}" target="_blank" rel="noopener noreferrer">@${userData.twitter_username}</a></span>` : ''}
+        ${userData.blog ? `<span>🔗 <a href="${userData.blog.startsWith('http') ? userData.blog : `https://${userData.blog}`}" target="_blank" rel="noopener noreferrer">${userData.blog}</a></span>` : ''}
+    </div>
+  `;
+
   container.innerHTML = `
     <div class="profile-card">
-      <img src="${userData.avatar_url}" alt="Avatar de ${
-    userData.name
-  }" class="profile-avatar">
+      <img src="${userData.avatar_url}" alt="Avatar de ${userData.name || userData.login}" class="profile-avatar">
       <div class="profile-info">
-        <h2>${userData.name}</h2>
+        <h2>${userData.name || userData.login}</h2>
         <p>${userData.bio || "Não possui bio cadastrada 😢."}</p>
+        ${extraInfo}
+        <a href="${userData.html_url}" target="_blank" rel="noopener noreferrer" class="external-link-btn">Acessar Perfil no GitHub</a>
       </div>
     </div>
 
@@ -45,3 +54,10 @@ export function renderProfile(userData, userRepos, container) {
   `;
 }
 
+export function renderError(message, container) {
+  container.innerHTML = `
+    <div class="error-message">
+        <p>⚠️ ${message}</p>
+    </div>
+  `;
+}
